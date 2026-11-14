@@ -63,11 +63,6 @@ Once the repository is pushed and public, with [HACS installed](https://www.hacs
 4. Find **Harmony Infrared** and download/install it.
 5. **Restart Home Assistant** to load the Python files.
 
-For a private checkout or manual installation, copy the **entire**
-`custom_components/harmony_ir/` folder into your HA configuration's
-`custom_components/` directory, then restart HA. Include all Python files,
-manifest, translations and brand assets; do not create an extra nested folder.
-
 ### 3. Connect HA
 
 Open **Settings → Devices & services → Add integration → Harmony Infrared**.
@@ -102,9 +97,9 @@ automatically retry an uncertain command. See [API.md](API.md) for requests.
 
 ## Updates and service control
 
-Re-run `python3 hub/install.py` from the updated checkout for the Hub. Update through HACS
-or replace the entire component folder for HA, then restart HA; an entry reload
-does not reliably reload Python code. Preserve integration and entity IDs.
+Re-run `python3 hub/install.py` from the updated checkout for the Hub. Update the
+HA integration through HACS, then restart HA; an entry reload does not reliably
+reload Python code. Preserve integration and entity IDs.
 
 The Hub controller accepts `status`, `check`, `start`, `stop`, `restart`,
 `enable`, `disable` and `uninstall`:
