@@ -128,7 +128,7 @@ Logs are in RAM at `/tmp/harmony-ir-service/bridge.log`, with one rotated copy.
 The original boot backup stays under `/data/harmony-ir/backups/`; never commit it.
 Persistence covers normal reboots, not factory reset or firmware replacement.
 
-## Testing and troubleshooting
+## Development
 
 ```sh
 python3 -m venv .venv
@@ -138,8 +138,7 @@ make test
 ```
 
 Development needs Python **3.12+** and Lua **5.1** or LuaJIT. Tests never contact
-a real Hub. See [TESTING.md](TESTING.md) for coverage, safe remote-HA testing,
-recovery and the explicit diagnostic CLI.
+a real Hub.
 
 ## Repository layout
 
@@ -155,7 +154,6 @@ continuous learning or authentication. Use HA's existing Harmony integration
 for stock activities. Appliance protocol decoding belongs in consumer integrations.
 
 - [HTTP/CLI API](API.md)
-- [Security, provenance and licensing](SECURITY.md)
 - [HA infrared API](https://developers.home-assistant.io/docs/core/entity/infrared/)
 - [HACS packaging requirements](https://www.hacs.xyz/docs/publish/integration/)
 
