@@ -1,5 +1,6 @@
-local directory = (arg[0] or ''):match('^(.*[/\\])') or './'
-package.path = directory .. '?.lua;' .. package.path
+local test_directory = (arg[0] or ''):match('^(.*[/\\])') or './'
+local repository_directory = test_directory .. '../../'
+package.path = repository_directory .. 'hub/?.lua;' .. package.path
 local ir, client = require('ir'), require('client')
 local count = 0
 local function test(name, fn)
@@ -167,7 +168,7 @@ test('successful send waits then cancels', function()
 end)
 test('LG power examples encode the expected keycodes and timings', function()
   for name, expected in pairs({on = '20DF23DC', off = '20DFA35C'}) do
-    local f = assert(io.open(directory .. 'examples/lg-power-' .. name .. '.txt', 'r'))
+    local f = assert(io.open(repository_directory .. 'examples/lg-power-' .. name .. '.txt', 'r'))
     local text = f:read('*a'); f:close()
     local timings, total = {}, 0
     for value in text:gmatch('%S+') do

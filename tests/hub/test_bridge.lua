@@ -1,5 +1,6 @@
-local directory = (arg[0] or ''):match('^(.*[/\\])') or './'
-package.path = directory .. '?.lua;' .. package.path
+local test_directory = (arg[0] or ''):match('^(.*[/\\])') or './'
+local repository_directory = test_directory .. '../../'
+package.path = repository_directory .. 'hub/?.lua;' .. package.path
 local http, bridge = require('http'), require('bridge')
 local count = 0
 local function test(name, fn)

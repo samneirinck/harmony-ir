@@ -7,17 +7,17 @@ test: test-lua test-python lint
 
 test-python:
 	SCHEMA_BACKEND=probatio PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q
-	SCHEMA_BACKEND=voluptuous PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q tests/test_config_flow.py
+	SCHEMA_BACKEND=voluptuous PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q tests/home_assistant/test_config_flow.py
 
 test-lua:
 	$(LUA) -e 'assert(_VERSION == "Lua 5.1", "Lua 5.1 or LuaJIT is required")'
-	$(LUA) test.lua
-	$(LUA) test_bridge.lua
-	$(LUA) test_capture.lua
+	$(LUA) tests/hub/test_ir.lua
+	$(LUA) tests/hub/test_bridge.lua
+	$(LUA) tests/hub/test_capture.lua
 
 lint:
 	$(PYTHON) -m ruff check --no-cache .
 	$(PYTHON) -m ruff format --check --no-cache .
 	sh -n install
-	sh -n scripts/install.sh
-	sh -n scripts/service.sh
+	sh -n hub/scripts/install.sh
+	sh -n hub/scripts/service.sh

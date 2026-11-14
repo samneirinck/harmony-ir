@@ -1,14 +1,17 @@
 import importlib.util
 import re
 import subprocess
+from pathlib import Path
 
 import pytest
-from conftest import ROOT
+
+ROOT = Path(__file__).resolve().parents[1]
+HUB = ROOT / "hub"
 
 
 @pytest.fixture
 def installer():
-    spec = importlib.util.spec_from_file_location("installer_under_test", ROOT / "install.py")
+    spec = importlib.util.spec_from_file_location("installer_under_test", HUB / "install.py")
     module = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(module)
     return module
@@ -19,7 +22,7 @@ def release_id(script):
 
 
 def test_every_runtime_file_is_staged(installer):
-    template = (ROOT / "scripts/install.sh").read_text()
+    template = (HUB / "scripts/install.sh").read_text()
     staged = re.search(r"for file in (.+); do", template).group(1).split()
     assert set(staged) == set(installer.PAYLOAD)
     rendered = installer.build_remote_script()
@@ -27,7 +30,19 @@ def test_every_runtime_file_is_staged(installer):
         assert filename in rendered
         assert path.read_text().rstrip() in rendered
     subprocess.run(["sh", "-n"], input=rendered, text=True, check=True)
-    subprocess.run(["sh", "-n", str(ROOT / "scripts/service.sh")], check=True)
+    subprocess.run(["sh", "-n", str(HUB / "scripts/service.sh")], check=True)
+
+
+def test_root_launcher_finds_hub_sources_outside_checkout(tmp_path):
+    result = subprocess.run(
+        ["sh", str(ROOT / "install"), "--host", "192.0.2.10", "--dry-run"],
+        cwd=tmp_path,
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    assert f"source: {HUB}" in result.stdout
+    assert "no SSH connection or device changes" in result.stdout
 
 
 def test_release_hash_changes_with_payload(installer, tmp_path, monkeypatch):
@@ -71,7 +86,7 @@ def test_host_injection_is_rejected(installer, host, monkeypatch):
 
 
 def test_no_source_depends_on_analysis_workspace():
-    sources = [ROOT / "install.py", *(ROOT / "custom_components").rglob("*.py")]
+    sources = [HUB / "install.py", *(ROOT / "custom_components").rglob("*.py")]
     for path in sources:
         for analysis_path in ("lua-decompiled", "lua-normalized", "firmware/tools"):
             assert analysis_path not in path.read_text()

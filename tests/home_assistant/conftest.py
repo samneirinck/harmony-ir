@@ -15,7 +15,7 @@ if os.environ.get("SCHEMA_BACKEND", "probatio") == "probatio":
 
 import voluptuous as vol
 
-ROOT = Path(__file__).resolve().parents[1]
+ROOT = Path(__file__).resolve().parents[2]
 COMPONENT = ROOT / "custom_components" / "harmony_ir"
 
 
