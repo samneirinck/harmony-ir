@@ -6,7 +6,7 @@ test: test-python lint
 
 test-python:
 	SCHEMA_BACKEND=probatio PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q
-	SCHEMA_BACKEND=voluptuous PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q tests/home_assistant/test_config_flow.py
+	SCHEMA_BACKEND=voluptuous PYTHONDONTWRITEBYTECODE=1 $(PYTHON) -m pytest -q tests/test_config_flow.py
 
 lint:
 	$(PYTHON) -m ruff check --no-cache .

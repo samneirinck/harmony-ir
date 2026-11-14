@@ -142,7 +142,7 @@ Development needs Python **3.12+**. Tests never contact a real Hub.
 
 - `custom_components/harmony_ir/`: HA integration, at the root for HACS compatibility.
 - `hub/`: Lua service, CLI tools, installer and service scripts.
-- `tests/home_assistant/`: HA tests; installer tests live in `tests/`.
+- `tests/`: HA integration and installer tests.
 
 ## Scope and references
 
