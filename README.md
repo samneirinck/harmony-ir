@@ -82,12 +82,6 @@ Stock Harmony SSDP can offer discovery when the default-port bridge responds.
 A custom port requires manual setup. Discovery does not track arbitrary IP
 changes automatically.
 
-For existing YAML users: back up configuration, remove only the
-`platform: harmony_ir` item from `infrared`, restart HA, and add the UI entry
-with the **same host and port**. Keep the existing entity registry and consumer
-integrations. The original emitter unique ID is preserved; do not leave YAML
-and UI active for the same endpoint. Legacy YAML operation remains supported.
-
 ### 4. Use the transmitter and receiver
 
 A new entity can show `unknown` until its first signal, not necessarily offline.
