@@ -27,10 +27,8 @@ From a checkout of this repository, keep Harmony controls idle and run on your
 computer, replacing the example address/key:
 
 ```sh
-./install --host 192.0.2.10 --key ~/.ssh/id_ed25519
+python3 hub/install.py --host 192.0.2.10 --key ~/.ssh/id_ed25519
 ```
-
-Alternatively, run `python3 hub/install.py` with the same options.
 
 The installer streams current sources over SSH, stages and validates them under
 `/data/harmony-ir`, adds one owned block to `/etc/init.d/rcS.local`, and starts a
@@ -109,7 +107,7 @@ the [LG examples](examples/README.md) for reviewed power commands.
 
 ## Updates and service control
 
-Re-run `./install` from the updated checkout for the Hub. Update through HACS
+Re-run `python3 hub/install.py` from the updated checkout for the Hub. Update through HACS
 or replace the entire component folder for HA, then restart HA; an entry reload
 does not reliably reload Python code. Preserve integration and entity IDs.
 
@@ -148,7 +146,7 @@ recovery and the explicit diagnostic CLI.
 - `custom_components/harmony_ir/`: HA integration, at the root for HACS compatibility.
 - `hub/`: Lua service, CLI tools, installer and service scripts.
 - `tests/hub/` and `tests/home_assistant/`: component tests; installer tests live in `tests/`.
-- `examples/`: sample IR commands. The root `install` launcher runs `hub/install.py`.
+- `examples/`: sample IR commands.
 
 ## Scope and references
 

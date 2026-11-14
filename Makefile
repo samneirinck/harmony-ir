@@ -18,6 +18,5 @@ test-lua:
 lint:
 	$(PYTHON) -m ruff check --no-cache .
 	$(PYTHON) -m ruff format --check --no-cache .
-	sh -n install
 	sh -n hub/scripts/install.sh
 	sh -n hub/scripts/service.sh

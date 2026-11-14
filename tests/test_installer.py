@@ -1,6 +1,7 @@
 import importlib.util
 import re
 import subprocess
+import sys
 from pathlib import Path
 
 import pytest
@@ -33,9 +34,9 @@ def test_every_runtime_file_is_staged(installer):
     subprocess.run(["sh", "-n", str(HUB / "scripts/service.sh")], check=True)
 
 
-def test_root_launcher_finds_hub_sources_outside_checkout(tmp_path):
+def test_installer_finds_hub_sources_outside_checkout(tmp_path):
     result = subprocess.run(
-        ["sh", str(ROOT / "install"), "--host", "192.0.2.10", "--dry-run"],
+        [sys.executable, str(HUB / "install.py"), "--host", "192.0.2.10", "--dry-run"],
         cwd=tmp_path,
         capture_output=True,
         text=True,
