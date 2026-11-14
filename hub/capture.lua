@@ -12,7 +12,7 @@ local function run()
   local socket, json, socket_source, json_source = client.modules()
   assert(socket, socket_source); assert(json, json_source)
   assert(type(json.encode) == 'function', 'JSON encoder unavailable')
-  io.stderr:write('EXPERIMENTAL: keep all IR controllers idle. Do not run alongside the bridge.\n'
+  io.stderr:write('Keep all IR controllers idle. Do not run alongside the bridge.\n'
     .. 'Aim the original remote at the Hub learning receiver and press once; do not hold.\n'
     .. 'Listening for up to ' .. timeout .. ' seconds. No IR will be transmitted.\n')
   local captured = client.capture(socket, json, timeout)

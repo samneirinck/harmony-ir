@@ -51,7 +51,7 @@ class HarmonyClient:
             raise HomeAssistantError("Not a compatible Harmony IR bridge")
         decoder_version = health.get("capture_decoder_version")
         self.supports_capture = (
-            health.get("capture_experimental") is True
+            health.get("capture_supported", health.get("capture_experimental")) is True
             and type(decoder_version) is int
             and decoder_version >= CAPTURE_DECODER_VERSION
         )

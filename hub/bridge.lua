@@ -9,7 +9,7 @@ function M.handle(request, socket, json, client)
     return result(200, {api_version = 1, transmitter = 'harmony-hal',
       authenticated = false, max_duration_us = 1000000, max_timings = 2048,
       min_carrier_hz = 10000, max_carrier_hz = 60000, ports = 7,
-      capture_experimental = true, capture_decoder_version = 2,
+      capture_supported = true, capture_decoder_version = 2,
       max_capture_timeout_s = 30})
   end
   if request.path ~= '/transmit' and request.path ~= '/capture' then
@@ -34,7 +34,7 @@ function M.handle(request, socket, json, client)
     end)
     if not valid then return result(400, {error = tostring(timeout)}) end
     local ok, captured = pcall(client.capture, socket, json, timeout)
-    if not ok then return result(502, {error = tostring(captured), experimental = true}) end
+    if not ok then return result(502, {error = tostring(captured)}) end
     if not captured then
       return result(504, {error = 'capture timed out; HAL connection closed',
         capture_timeout = true, timeout_s = timeout})

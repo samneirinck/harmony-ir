@@ -27,7 +27,7 @@ local function run()
   assert(listener:listen(1))
   print('Harmony IR bridge: http://' .. host .. ':' .. port)
   print('WARNING: NO AUTHENTICATION. Trusted LAN only; never port-forward this service.')
-  print('Experimental capture available via POST /capture; no automatic replay.')
+  print('IR capture available via POST /capture; no automatic replay.')
   print('Single worker; do not run CLI commands or other IR controllers concurrently.')
   io.stdout:flush()
   while true do

@@ -46,7 +46,7 @@ function M.decode_capture(raw_capture)
     'invalid native capture length')
   local function read_word(offset) return byte(raw_capture, offset) * 256 + byte(raw_capture, offset + 1) end
   local first_pulse_us, first_mark_us, pulse_count = read_word(1), read_word(3), read_word(5)
-  local result = {experimental = true, decoder_version = 2, native_capture_hex = M.hex(raw_capture),
+  local result = {decoder_version = 2, native_capture_hex = M.hex(raw_capture),
     first_pulse_us = first_pulse_us, first_mark_us = first_mark_us, first_mark_pulses = pulse_count}
   if pulse_count > 1 and first_mark_us > first_pulse_us then
     result.carrier_hz_estimate = floor(1000000 * (pulse_count - 1) / (first_mark_us - first_pulse_us) + 0.5)

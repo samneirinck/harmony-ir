@@ -173,6 +173,21 @@ def test_old_receiver_api_keeps_emitter(ha, configuration, entry, monkeypatch):
     assert entities.receiver is None
 
 
+@pytest.mark.parametrize("capability", ["capture_supported", "capture_experimental"])
+@pytest.mark.parametrize("enabled", [True, False])
+def test_capture_capability_supports_current_and_legacy_bridges(
+    ha, configuration, health, capability, enabled
+):
+    async def scenario():
+        bridge_health = {key: value for key, value in health.items() if key != "capture_supported"}
+        bridge_health[capability] = enabled
+        client = create_client(ha, Session(Response(200, bridge_health)), configuration)
+        await client.async_check_connection()
+        assert client.supports_capture is enabled
+
+    asyncio.run(scenario())
+
+
 def test_old_bridge_keeps_emitter(ha, configuration, entry):
     client = create_client(ha, Session(), configuration)
     entities = ha.infrared.create_entities(client, configuration, entry)

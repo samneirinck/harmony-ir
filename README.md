@@ -5,9 +5,9 @@
 Use a rooted Logitech Harmony Hub's built-in IR transmitter and receiver from
 Home Assistant. A Lua 5.1 HTTP bridge uses the Hub's existing HAL; the HA
 integration provides standard emitter/receiver entities and a capture button.
-Receiving is experimental and explicitly armed on demand.
+Receiving is explicitly armed on demand.
 
-**Version 0.1.0 — experimental. Trusted LAN only: no authentication or TLS.**
+**Version 0.1.0. Trusted LAN only: no authentication or TLS.**
 Never expose the bridge to the internet or port-forward it.
 
 ## Installation

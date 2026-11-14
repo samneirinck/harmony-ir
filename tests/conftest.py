@@ -233,7 +233,7 @@ def health():
     return {
         "api_version": 1,
         "transmitter": "harmony-hal",
-        "capture_experimental": True,
+        "capture_supported": True,
         "capture_decoder_version": 2,
     }
 

@@ -15,7 +15,7 @@ curl --max-time 5 "http://$HUB_HOST:8089/health"
 ```
 
 Returns API version, transmitter limits, output mask, `authenticated:false`,
-`capture_experimental:true`, `capture_decoder_version:2` and
+`capture_supported:true`, `capture_decoder_version:2` and
 `max_capture_timeout_s:30`.
 No HAL connection is made: this proves HTTP availability, not physical IR health.
 
@@ -69,7 +69,7 @@ the appliance may already have received it. A client disconnect does not abort
 the send/wait/cancel operation already in progress. Cancellation is best-effort
 if the process is interrupted or the HAL fails.
 
-## POST /capture (experimental)
+## POST /capture
 
 Listen for one raw IR capture through HAL's native `ir.cap` command. This does
 not transmit, automatically replay, decode an appliance protocol, or store codes.
@@ -89,7 +89,7 @@ seconds, default 10; set curl's timeout several seconds longer.
 
 A successful response (200) contains:
 
-- `experimental:true`, `decoder_version:2` and lossless `native_capture_hex`.
+- `decoder_version:2` and lossless `native_capture_hex`.
 - `first_pulse_us`, `first_mark_us`, `first_mark_pulses`: native metadata.
 - `carrier_hz_estimate`, when the metadata permits an estimate. This is not an
   exact carrier measurement; use the known protocol frequency when available.
