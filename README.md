@@ -12,8 +12,8 @@ Never expose the bridge to the internet or port-forward it.
 
 ## Installation
 
-Install the Hub service and HA integration separately. **HACS only installs the
-HA component; it does not root the Hub or update its Lua service.**
+Install the Hub service and HA integration separately. **Marketplace (HACS) only
+installs the HA component; it does not root the Hub or update its Lua service.**
 
 ### 1. Hub service
 
@@ -47,18 +47,18 @@ On the Hub, check service status without transmitting:
 /data/harmony-ir/service check
 ```
 
-### 2. HA integration via HACS
+### 2. HA integration via Marketplace (HACS)
 
 Your HA build needs `InfraredEmitterEntity`, `InfraredReceiverEntity` and
 `InfraredReceivedSignal` in its core `infrared` domain for both features. A
 minimum released version has not yet been established. Older HA builds lacking
 receiver APIs fall back to emitter-only operation; the receiver hardware is
-built into the Hub. HACS does not add core APIs.
+built into the Hub. Marketplace does not add core APIs.
 
-Once the repository is pushed and public, with [HACS installed](https://www.hacs.xyz/docs/use/):
+With [Marketplace (HACS) installed](https://www.hacs.xyz/docs/use/):
 
 1. Back up HA before changing custom integrations.
-2. Open **HACS → ⋮ → Custom repositories**.
+2. Open **Marketplace (or HACS) → ⋮ → Custom repositories**.
 3. Add `https://github.com/samneirinck/harmony-ir`, type **Integration**.
 4. Find **Harmony Infrared** and download/install it.
 5. **Restart Home Assistant** to load the Python files.
@@ -98,8 +98,8 @@ automatically retry an uncertain command. See [API.md](API.md) for requests.
 ## Updates and service control
 
 Re-run `python3 hub/install.py` from the updated checkout for the Hub. Update the
-HA integration through HACS, then restart HA; an entry reload does not reliably
-reload Python code. Preserve integration and entity IDs.
+HA integration through Marketplace, then restart HA; an entry reload does not
+reliably reload Python code. Preserve integration and entity IDs.
 
 The Hub controller accepts `status`, `check`, `start`, `stop`, `restart`,
 `enable`, `disable` and `uninstall`:
