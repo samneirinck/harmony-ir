@@ -63,11 +63,6 @@ Once the repository is pushed and public, with [HACS installed](https://www.hacs
 4. Find **Harmony Infrared** and download/install it.
 5. **Restart Home Assistant** to load the Python files.
 
-HACS tracks updates from the default branch (`main`); GitHub releases are not
-required. Default-store listing is not required. Public HACS validation still
-needs the owner's license decision and GitHub metadata (description, topics and
-Issues).
-
 For a private checkout or manual installation, copy the **entire**
 `custom_components/harmony_ir/` folder into your HA configuration's
 `custom_components/` directory, then restart HA. Include all Python files,
