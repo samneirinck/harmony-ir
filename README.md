@@ -20,8 +20,7 @@ HA component; it does not root the Hub or update its Lua service.**
 You need existing owner root SSH on firmware 4.15.600, plus Python **3.9+** and
 OpenSSH on your computer. For rooting and SSH setup, see
 [harmony-hub-root](https://github.com/Ripthulhu/harmony-hub-root/).
-Only modify a Hub you own or have permission to modify, and pass the SSH private
-key selected during rooting to `--key` below.
+Pass the SSH private key selected during rooting to `--key` below.
 The IR service needs no new Hub packages, compiler or firmware replacement.
 
 From a checkout of this repository, keep Harmony controls idle and run on your
