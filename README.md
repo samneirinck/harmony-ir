@@ -63,10 +63,10 @@ Once the repository is pushed and public, with [HACS installed](https://www.hacs
 4. Find **Harmony Infrared** and download/install it.
 5. **Restart Home Assistant** to load the Python files.
 
-HACS supports published GitHub releases and version selection. Before the first
-release, it downloads the default branch. Default-store listing is not required.
-Public HACS validation still needs the owner's license decision and GitHub
-metadata (description, topics and Issues).
+HACS tracks updates from the default branch (`main`); GitHub releases are not
+required. Default-store listing is not required. Public HACS validation still
+needs the owner's license decision and GitHub metadata (description, topics and
+Issues).
 
 For a private checkout or manual installation, copy the **entire**
 `custom_components/harmony_ir/` folder into your HA configuration's
@@ -138,24 +138,6 @@ make test
 ```
 
 Development needs Python **3.12+**. Tests never contact a real Hub.
-
-## Releases
-
-After pushing the code and the **Checks** workflow passes, tag the release:
-
-```sh
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-The **Release** workflow checks that the tag matches the version in
-`custom_components/harmony_ir/manifest.json`, then publishes a GitHub release
-with generated notes. GitHub supplies the source archives; no extra build or
-ZIP upload is needed. HACS installs the HA component from the release. The Hub
-service remains a separate installation from the corresponding source checkout.
-
-For later releases, update the manifest version before creating its matching
-`vX.Y.Z` tag. Keep existing release tags unchanged.
 
 ## Repository layout
 
