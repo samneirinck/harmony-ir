@@ -1,0 +1,18 @@
+{
+  "domain": "harmony_ir",
+  "name": "Harmony Infrared",
+  "codeowners": ["@samneirinck"],
+  "config_flow": true,
+  "dependencies": ["infrared"],
+  "documentation": "https://github.com/samneirinck/harmony-ir#readme",
+  "integration_type": "device",
+  "iot_class": "local_push",
+  "issue_tracker": "https://github.com/samneirinck/harmony-ir/issues",
+  "ssdp": [
+    {
+      "deviceType": "urn:myharmony-com:device:harmony:1",
+      "manufacturer": "Logitech"
+    }
+  ],
+  "version": "0.1.0"
+}

@@ -1,0 +1,43 @@
+{
+  "title": "Harmony Infrared",
+  "config": {
+    "flow_title": "{name}",
+    "step": {
+      "user": {
+        "title": "Connect Harmony IR bridge",
+        "description": "Enter your Hub's bridge address. Setup checks /health without transmitting IR. The bridge has no authentication: use a trusted LAN only.",
+        "data": {
+          "host": "Host",
+          "port": "Bridge port",
+          "name": "Name"
+        }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Harmony IR bridge",
+        "description": "Update the address, port, or name. The existing emitter identity is preserved.",
+        "data": {
+          "host": "Host",
+          "port": "Bridge port",
+          "name": "Name"
+        }
+      }
+    },
+    "error": {
+      "invalid_input": "Enter a valid hostname or IPv4 address, a port from 1024 to 65535, and a nonempty name.",
+      "cannot_connect": "Could not reach a compatible Harmony IR bridge. Check that the Lua service is running and the host/port are correct.",
+      "already_configured": "Another Harmony Infrared entry already uses this address and port."
+    },
+    "abort": {
+      "already_configured": "This Harmony IR bridge is already configured.",
+      "not_bridge": "No compatible IR bridge was found on this Harmony Hub's default port (8089). Use manual setup for a different port.",
+      "reconfigure_successful": "Bridge configuration updated."
+    }
+  },
+  "entity": {
+    "button": {
+      "capture_ir": {
+        "name": "Capture IR (10 seconds)"
+      }
+    }
+  }
+}
