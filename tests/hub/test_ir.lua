@@ -166,31 +166,4 @@ test('successful send waits then cancels', function()
   assert(ok, err)
   assert(slept and #calls == 2)
 end)
-test('LG power examples encode the expected keycodes and timings', function()
-  for name, expected in pairs({on = '20DF23DC', off = '20DFA35C'}) do
-    local f = assert(io.open(repository_directory .. 'examples/lg-power-' .. name .. '.txt', 'r'))
-    local text = f:read('*a'); f:close()
-    local timings, total = {}, 0
-    for value in text:gmatch('%S+') do
-      local n = assert(tonumber(value))
-      timings[#timings + 1] = n
-      total = total + math.abs(n)
-    end
-    assert(#timings == 72 and total == 215735)
-    assert(timings[1] == 8990 and timings[2] == -4490)
-    local key = 0
-    for bit = 1, 32 do
-      assert(timings[bit * 2 + 1] == 568)
-      local space = timings[bit * 2 + 2]
-      assert(space == -552 or space == -1662)
-      key = key * 2 + (space == -1662 and 1 or 0)
-    end
-    assert(string.format('%08X', key) == expected)
-    assert(timings[67] == 568 and timings[68] == -40222)
-    assert(timings[69] == 8990 and timings[70] == -2230)
-    assert(timings[71] == 568 and timings[72] == -96077)
-    local _, duration = ir.encode(38000, timings)
-    assert(duration == total)
-  end
-end)
 print('Passed ' .. count .. ' offline tests; no device I/O.')

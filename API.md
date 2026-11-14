@@ -122,28 +122,6 @@ For standalone Lua, with the bridge stopped, run from the deployed directory:
 lua capture.lua --timeout 10 > /tmp/ir-capture.json
 ```
 
-## Controlled LG power check
-
-With the bridge running, create a request from the reviewed example. This first
-command does not transmit:
-
-```sh
-python3 -c 'import json,pathlib; p=pathlib.Path("examples/lg-power-off.txt"); print(json.dumps({"carrier_hz":38000,"timings_us":[int(v) for v in p.read_text().split()]}))' > /tmp/lg-power-off.json
-```
-
-Only when ready to **turn the TV off**, with other Harmony controls idle:
-
-```sh
-curl --max-time 10 --fail-with-body \
-  -H 'Content-Type: application/json' \
-  --data-binary @/tmp/lg-power-off.json \
-  "http://$HUB_HOST:8089/transmit"
-```
-
-Python is used only on the computer to prepare JSON, not on the Hub. For Power
-On, prepare a separate request using `examples/lg-power-on.txt`. Do not chain
-both commands as one test. Check the TV's state before any retry.
-
 ## CLI
 
 On the Hub, with the three CLI files deployed:

@@ -76,8 +76,8 @@ manifest, translations and brand assets; do not create an extra nested folder.
 
 Open **Settings → Devices & services → Add integration → Harmony Infrared**.
 Enter the Hub address, port **8089**, and a name. Setup only checks `/health`;
-it never transmits. Select the emitter in a compatible consumer such as
-**LG Infrared**. A DHCP reservation is recommended; use **Reconfigure** for
+it never transmits. Select the emitter in a compatible consumer integration.
+A DHCP reservation is recommended; use **Reconfigure** for
 address changes rather than deleting integration/entity-registry entries.
 
 Stock Harmony SSDP can offer discovery when the default-port bridge responds.
@@ -102,8 +102,7 @@ never continuous and captured signals are never automatically replayed.
 
 Only test a transmission when someone can observe a non-safety-critical
 appliance. HAL acceptance is not proof of appliance reception. Never
-automatically retry an uncertain command. See [API.md](API.md) for requests and
-the [LG examples](examples/README.md) for reviewed power commands.
+automatically retry an uncertain command. See [API.md](API.md) for requests.
 
 ## Updates and service control
 
@@ -145,7 +144,6 @@ a real Hub.
 - `custom_components/harmony_ir/`: HA integration, at the root for HACS compatibility.
 - `hub/`: Lua service, CLI tools, installer and service scripts.
 - `tests/hub/` and `tests/home_assistant/`: component tests; installer tests live in `tests/`.
-- `examples/`: sample IR commands.
 
 ## Scope and references
 
