@@ -136,14 +136,13 @@ python -m pip install -r requirements-dev.txt
 make test
 ```
 
-Development needs Python **3.12+** and Lua **5.1** or LuaJIT. Tests never contact
-a real Hub.
+Development needs Python **3.12+**. Tests never contact a real Hub.
 
 ## Repository layout
 
 - `custom_components/harmony_ir/`: HA integration, at the root for HACS compatibility.
 - `hub/`: Lua service, CLI tools, installer and service scripts.
-- `tests/hub/` and `tests/home_assistant/`: component tests; installer tests live in `tests/`.
+- `tests/home_assistant/`: HA tests; installer tests live in `tests/`.
 
 ## Scope and references
 
